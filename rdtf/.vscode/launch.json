@@ -1,0 +1,85 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Get Config",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/rdtf.js",
+            "args": [
+                "localhost",
+                "getconfig"
+            ],
+            "console": "integratedTerminal",
+            "restart": false,
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        {
+            "name": "Motor Move",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/rdtf.js",
+            "args": [
+                "localhost",
+                "motormove",
+                "90"
+            ],
+            "console": "integratedTerminal",
+            "restart": false,
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        {
+            "name": "OSDP Mode Reader1",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/rdtf.js",
+            "args": [
+                "localhost",
+                "setreadertype",
+                "1",
+                "osdp"
+            ],
+            "console": "integratedTerminal",
+            "restart": false,
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        {
+            "name": "Wiegand Mode Reader1",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/rdtf.js",
+            "args": [
+                "localhost",
+                "setreadertype",
+                "1",
+                "wiegand"
+            ],
+            "console": "integratedTerminal",
+            "restart": false,
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        {
+            "name": "help",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/rdtf.js",
+            "args": [
+                "localhost",
+                "help"
+            ],
+            "console": "integratedTerminal",
+            "restart": false,
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        }
+    ]
+}

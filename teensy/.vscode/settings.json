@@ -1,0 +1,10 @@
+{
+    "C_Cpp.errorSquiggles": "enabled",
+    "editor.formatOnSave": true,
+    "[cpp]": {
+        "editor.defaultFormatter": "ms-vscode.cpptools",
+        "editor.formatOnSave": true
+    },
+    "C_Cpp.clang_format_style": "file",
+    "C_Cpp.clang_format_fallbackStyle": "none"
+}

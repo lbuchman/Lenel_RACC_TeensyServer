@@ -1,0 +1,14 @@
+{
+  "name": "reader-master",
+  "version": "1.0.0",
+  "main": "osdp-master.js",
+  "bin": {
+    "reader-master": "./osdp-master.js"
+  },
+  "scripts": {
+    "start": "node osdp-master.js /dev/ttyACM0 115200 0"
+  },
+  "dependencies": {
+    "serialport": "^12.0.0"
+  }
+}

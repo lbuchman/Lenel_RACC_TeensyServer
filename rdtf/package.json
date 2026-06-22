@@ -1,0 +1,38 @@
+{
+  "name": "rdtfcmd",
+  "version": "1.0.0",
+  "description": "RedDiamond Reader Fixture Dual-Mode Validation & Core26 CLI Automation Harness",
+  "main": "osdp-master.js",
+  "bin": {
+    "rdtf": "./rdtf.js"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test-osdp": "node osdp-master.js /dev/ttyACM0 115200 1 osdp",
+    "test-wiegand": "node osdp-master.js /dev/ttyACM0 115200 1 wiegand",
+    "get-config": "node rdtf.js 192.168.1.50 getconfig",
+    "motor-move": "node rdtf.js 192.168.1.50 motormove 90 5000"
+  },
+  "keywords": [
+    "osdp",
+    "wiegand",
+    "access-control",
+    "teensy",
+    "core26",
+    "stepper"
+  ],
+  "author": "lbuchman",
+  "license": "MIT",
+  "dependencies": {
+    "serialport": "^12.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-plugin-node": "^11.1.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "private": true
+}

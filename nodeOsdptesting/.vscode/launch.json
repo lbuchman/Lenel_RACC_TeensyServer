@@ -1,0 +1,18 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run OSDP Control Panel",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/osdp-master.js",
+      "args": [
+        "/dev/ttyACM0",
+        "115200",
+        "1",
+        "osdp"
+      ],
+      "console": "integratedTerminal"
+    }
+  ]
+}

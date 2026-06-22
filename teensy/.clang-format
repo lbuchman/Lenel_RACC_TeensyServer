@@ -1,0 +1,44 @@
+BasedOnStyle: LLVM
+Language: Cpp
+
+# 🔄 Fine-Tuned Custom Brace Controls
+BreakBeforeBraces: Custom
+BraceWrapping:
+  # 🟩 FIXED: This stops the class brace from going to the next line!
+  AfterClass: false
+  # 🟩 FIXED: This stops enum braces from going to the next line!
+  AfterEnum: false
+  
+  # Keeps Allman style on for your regular functions and loops
+  AfterControlStatement: false
+  AfterFunction: false
+  AfterNamespace: true
+  AfterStruct: false
+  AfterUnion: true
+  BeforeCatch: true
+  BeforeElse: false
+
+# 📏 Indentation & Spacing Controls
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+ColumnLimit: 140
+
+# 🚫 PREVENT LINE COLLAPSING & WEIRD WRAPPING
+AllowShortEnumsOnASingleLine: true
+AllowShortBlocksOnASingleLine: Always
+AllowShortFunctionsOnASingleLine: All
+
+# 🚫 PREVENT CONSTRUCTOR INITIALIZER CORRUPTION
+ConstructorInitializerAllOnOneLineOrOnePerLine: false
+ConstructorInitializerIndentWidth: 4
+PackConstructorInitializers: Never
+
+# 🚫 PREVENT RE-FLOWING OF COMMENTS
+ReflowComments: false
+
+# 🛠️ Alignment Overrides 
+PointerAlignment: Left
+ReferenceAlignment: Left
+AccessModifierOffset: -4
+SpaceBeforeParens: ControlStatements

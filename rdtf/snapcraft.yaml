@@ -1,0 +1,34 @@
+name: rdtf
+base: core26
+version: '1.0.0'
+summary: RedDiamond Reader Fixture CLI Automation Harness
+description: |
+  A lightweight, zero-dependency Node.js CLI tool designed to communicate 
+  with the core26 REST controller server layer. Supports unquoted variable 
+  arguments and structured line-by-line formatting outputs.
+
+# 🟢 FIXED: Added tracking project metadata to satisfy and clear the Snap linter rules
+license: MIT
+website: https://github.com
+source-code: https://github.com
+issues: https://github.com/issues
+
+grade: stable
+confinement: strict
+
+apps:
+  rdtf:
+    # 🟢 FIXED: Changed path from bin/rdtf to use the direct local node wrapper path
+    command: bin/node $SNAP/bin/rdtf
+    plugs:
+      - network
+      - network-bind
+
+parts:
+  rdtf-cli:
+    plugin: npm
+    source: .
+    npm-include-node: true
+    npm-node-version: '24'
+    build-packages:
+      - python3

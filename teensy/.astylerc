@@ -1,0 +1,18 @@
+# 🔄 Fine-Tuned Custom Brace Controls (Attach to the same line)
+--style=java
+
+# 📏 Indentation & Spacing Controls
+--indent=spaces=4
+--max-code-length=140
+
+# 🚫 PREVENT CODE COLLAPSING
+# Keeps short inline helper functions and enums tightly grouped on one line
+--keep-one-line-blocks
+--keep-one-line-statements
+
+# 🛠️ Padding & Pointer Options
+--pad-oper
+--pad-header
+--unpad-paren
+--align-pointer=type
+--align-reference=type

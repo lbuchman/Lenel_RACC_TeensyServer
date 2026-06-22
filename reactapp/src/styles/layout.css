@@ -1,0 +1,75 @@
+.app-root {
+  height: 100vh;
+  min-height: 100vh;
+  padding: 24px;
+  background: radial-gradient(circle at top, #141d2f 0%, #0a0f1d 40%, #02050f 100%);
+  color: #e8eef8;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.app-root > main {
+  min-height: 0;
+  flex: 0 0 auto;
+}
+
+.app-root > .log-viewer {
+  flex: 1;
+  min-height: 0;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.app-header-controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.panel-grid {
+  display: grid;
+  grid-template-columns:
+    220px
+    220px
+    520px
+    minmax(400px, 1fr);
+  gap: 14px;
+  overflow: hidden;
+  align-items: start;
+}
+
+@media (max-width: 740px) {
+  .app-header {
+    align-items: stretch;
+  }
+
+  .status-pill {
+    width: fit-content;
+  }
+}
+
+@media (max-width: 1000px) {
+  .panel-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-height: 950px) {
+  .app-root {
+    padding: 16px;
+  }
+
+  .panel-grid {
+    gap: 14px;
+  }
+}

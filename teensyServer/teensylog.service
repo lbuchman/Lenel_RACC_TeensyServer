@@ -1,0 +1,12 @@
+[Unit]
+Description=teensy log
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=frontail -n 10 -l 4000 --ui-hide-topbar --ui-highlight --ui-nondent  -p 8080 /home/pi/lenel/teensyLog.log
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+Alias=teensylog

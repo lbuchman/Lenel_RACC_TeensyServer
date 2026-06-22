@@ -1,0 +1,25 @@
+#!/bin/sh
+set -e
+
+#bdtf help pia  |  python -m json.tool
+
+if [ "$1" = "h" ] || [ -z "$1" ]  || [ -z "$2" ]; then
+    echo "$0 command host argument=null timeout = 10000"
+    exit 1
+fi
+
+timeoutValue="$4"
+if  [ -z "$4" ]; then
+    timeoutValue=5000
+fi
+
+argument="$3"
+if  [ -z "$3" ]; then
+    curl  --silent --header "Content-Type: application/json" --request POST  --data "{\"cmd\":\"${2}\", \"timeout\": \"${timeoutValue}\"}" http://${1}:3300/commands |  python -m json.tool
+else
+    curl  --silent --header "Content-Type: application/json" --request POST  --data "{\"cmd\":\"${2}\", \"arg\": \"${argument}\", \"timeout\": \"${timeoutValue}\"}" http://${1}:3300/commands |  python -m json.tool
+fi
+
+
+
+

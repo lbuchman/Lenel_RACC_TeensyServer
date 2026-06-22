@@ -1,0 +1,29 @@
+name: readertest
+base: core26                  # Targets the Ubuntu 26.04 LTS baseline execution engine
+version: '1.0.0'
+summary: Node.js application running on core26 classic confinement
+description: |
+  A robust Node.js package compiled for the lightweight core26 footprint 
+  using manual dependency staging for runtime operations.
+
+grade: stable
+confinement: classic          # Open host clearance bypassing systemic virtualization
+
+apps:
+  readertest:
+    command: bin/node $SNAP/bin/reader-master      # Maps directly to the bin property target key in package.json
+    environment:
+      # Places the snap's internal bin directory ahead of the host paths
+      PATH: "$SNAP/bin:$PATH"
+
+parts:
+  readertest:
+    plugin: npm               
+    source: .
+    npm-include-node: true    
+    npm-node-version: "24"
+    build-packages:
+      - python3               # CRITICAL: Re-injects Python dropped from the core26 layer
+      - make
+      - g++
+

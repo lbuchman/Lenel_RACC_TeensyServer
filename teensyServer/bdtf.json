@@ -1,0 +1,34 @@
+
+{
+    "gui": {
+        "fixtureURL": "http://localhost:3300/commands",
+        "testingDirectory": "/home/pi/myGitHub/f2fSimPanel/pi/testing/" 
+    },   
+     "cucumber": {
+         "hostServer": "localhost",
+         "retryDelay": 100,
+         "retries": 20, 
+         "timeout": 5000,
+         "logFilePath": "/home/pi/lenel/cucumbertest.log"   
+   },
+      "teensyServer": {   
+          "tcpPort": 3300,    
+          "teensyPullInterval": 30,
+          "myUdpPort": 10000,
+          "serialDev": "/dev/serial0",
+          "serialBaud": 256000,
+          "logSerialDev": "/dev/ttyAMA1",
+          "logSerialDevBaudRate": 256000,
+          "teensyProgGpio": 17,
+          "teensyPowerGpio": 6,
+          "serialPullInt": 20,
+          "serialInterbyteTimeout": 50,
+          "serialQueueMaxLength": 8,
+          "serialQueueWaitTimeoutMs": 30000,
+          "serialQueueFlushMs": 5000,
+          "teensyLogFilename": "/var/log/lenel/teensyLog.log",
+          "teensyServerLogFilename": "/var/log/lenel/teensyServer.log",
+          "teensyServerLogDebugFilename": "/var/log/lenel/teensyServerDebug.log"   
+      }
+ }
+ 

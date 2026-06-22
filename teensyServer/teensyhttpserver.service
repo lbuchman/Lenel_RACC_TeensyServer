@@ -1,0 +1,12 @@
+[Unit]
+Description=teensy http log server
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=http-server  -p 8080
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+Alias=teensyhttplog

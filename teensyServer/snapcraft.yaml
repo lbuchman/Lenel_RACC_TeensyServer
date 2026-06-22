@@ -1,0 +1,31 @@
+name: teensyserver
+version: '0.0.5'
+summary: Teensy HTTP server for redDiamondsFixture
+description: |
+  teensyserver provides the HTTP API endpoints for Teensy fixture control.
+  It runs as a classic snap daemon and can access local serial devices.
+base: core24
+grade: stable
+confinement: classic
+
+apps:
+  teensyserver:
+    command: bin/teensyserver
+    daemon: simple
+    restart-condition: always
+    environment:
+      # Places the snap's internal bin directory ahead of the host paths
+      PATH: "$SNAP/bin:$PATH"
+    plugs:
+      - network
+      - network-bind
+      - home
+      - raw-usb
+
+parts:
+  teensyserver:
+    plugin: npm
+    source: .
+    npm-node-version: "24"
+    npm-include-node: true
+
