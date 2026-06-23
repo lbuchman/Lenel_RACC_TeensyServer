@@ -200,7 +200,7 @@ export default function App() {
     <div className="app-root">
       <header className="app-header">
         <div>
-          <p className="eyebrow">Red Diamond Fixture</p>
+          <p className="eyebrow">READER ASSURANCE COMMAND CENTER</p>
         </div>
         <div className="app-header-controls">
           <button

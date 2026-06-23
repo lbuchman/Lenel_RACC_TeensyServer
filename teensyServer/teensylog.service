@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=frontail -n 10 -l 4000 --ui-hide-topbar --ui-highlight --ui-nondent  -p 8080 /home/pi/lenel/teensyLog.log
+ExecStart=frontail -n 10 -l 4000 --ui-hide-topbar --ui-highlight --ui-nondent  -p 8080 /var/log/teensyLog.log
 Restart=always
 
 [Install]
