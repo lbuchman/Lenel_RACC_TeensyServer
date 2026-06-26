@@ -4,6 +4,7 @@ export default function ActionPanel({
   onGetConfig,
   onSaveEeprom,
   onRehome,
+  onMotorStop,
   onReboot,
   onHelp,
   motorDegrees,
@@ -15,14 +16,13 @@ export default function ActionPanel({
 }) {
   return (
     <section className="panel panel-top">
-      <div className="panel-row">
-        <div className="action-buttons-row">
-          <button className="button-secondary" onClick={onGetConfig}>Get Config</button>
-          <button className="button-secondary" onClick={onSaveEeprom}>Save EEPROM</button>
-          <button className="button-secondary button-rehome" onClick={onRehome}>Rehome</button>
-          <button className="button-secondary button-reboot" onClick={onReboot}>Reboot</button>
-          <button className="button-secondary" onClick={onHelp}>Help</button>
-        </div>
+      <div className="action-buttons-row">
+        <button className="button-secondary button-tone-neutral" onClick={onGetConfig}>Get Config</button>
+        <button className="button-secondary button-tone-success" onClick={onSaveEeprom}>Save EEPROM</button>
+        <button className="button-secondary button-tone-warn" onClick={onRehome}>Rehome</button>
+        <button className="button-secondary button-tone-danger" onClick={onMotorStop}>Motor Stop</button>
+        <button className="button-secondary button-tone-danger" onClick={onReboot}>Reboot</button>
+        <button className="button-secondary button-tone-accent" onClick={onHelp}>Help</button>
       </div>
 
       <div className="panel-row panel-row-wrap action-row-wrap">

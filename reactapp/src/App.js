@@ -50,6 +50,8 @@ export default function App() {
   const [commandInput, setCommandInput] = useState("");
   const [controlReaderOutput, setControlReaderOutput] = useState("");
   const [controlLog, setControlLog] = useState("");
+  const [fwVersion, setFwVersion] = useState("");
+  const activeReaderModeCount = [reader0.type, reader1.type].filter(Boolean).length;
 
   const updateReaders = (config) => {
     const normalized = normalizeConfig(config);
@@ -151,6 +153,12 @@ export default function App() {
     setConnected(res.ok);
   };
 
+  const handleMotorStop = async () => {
+    const res = await sendCommand("motorstop");
+    setControlLog(formatResponseForHumans(res.data));
+    setConnected(res.ok);
+  };
+
   const handleReboot = async () => {
     const res = await sendCommand("reboot");
     setControlLog(formatResponseForHumans(res.data));
@@ -187,6 +195,19 @@ export default function App() {
         if (level) setLogLevel(level);
       }
 
+      const aboutRes = await sendCommand("about");
+      if (aboutRes.ok) {
+        const data = aboutRes.data;
+        const fw = data?.fw ?? data?.firmware ?? data?.version;
+        if (fw) {
+          setFwVersion(String(fw));
+        } else {
+          const raw = Array.isArray(data) ? data.join(" ") : String(data ?? "");
+          const match = raw.match(/([\d]+\.[\d]+\.[\d]+(?:[-.][\w]+)*)/);
+          if (match) setFwVersion(match[1]);
+        }
+      }
+
       const helpRes = await sendCommand("help");
       if (helpRes.ok) {
         setLogLevelOptions(extractLogLevelOptionsFromHelp(helpRes.data));
@@ -198,24 +219,31 @@ export default function App() {
 
   return (
     <div className="app-root">
+      <div className="app-backdrop" aria-hidden="true">
+        <div className="backdrop-grid" />
+      </div>
+
       <header className="app-header">
-        <div>
-          <p className="eyebrow">READER ASSURANCE COMMAND CENTER</p>
-        </div>
-        <div className="app-header-controls">
-          <button
-            className="button-secondary"
-            onClick={() => {
-              setControlReaderOutput("");
-              setControlLog("");
-            }}
-          >
-            Clear
-          </button>
-          <div className={`status-pill ${connected ? "status-online" : "status-offline"}`}>
-            {connected ? "Connected" : "Disconnected"}
+        <div className="app-header-topline">
+          <div className="app-header-copy">
+            <div className="brand-lockup" aria-label="application identity">
+              <span className="brand-mark brand-mark-alert">Reader Assurance</span>
+              <span className="brand-mark brand-mark-accent">Command Center</span>
+            </div>
+          </div>
+          <div className="app-header-controls">
+            <button
+              className="button-secondary"
+              onClick={() => {
+                setControlReaderOutput("");
+                setControlLog("");
+              }}
+            >
+              Clear
+            </button>
           </div>
         </div>
+
       </header>
 
       <main className="panel-grid">
@@ -251,6 +279,7 @@ export default function App() {
           onGetConfig={handleGetConfig}
           onSaveEeprom={handleSaveEeprom}
           onRehome={handleRehome}
+          onMotorStop={handleMotorStop}
           onReboot={handleReboot}
           onHelp={handleHelp}
           motorDegrees={motorDegrees}
@@ -265,6 +294,8 @@ export default function App() {
           className="panel-control"
           readerOutput={controlReaderOutput}
           log={controlLog}
+          fwVersion={fwVersion}
+          connected={connected}
         />
       </main>
 

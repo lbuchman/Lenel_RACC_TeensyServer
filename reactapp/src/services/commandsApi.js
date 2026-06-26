@@ -1,11 +1,11 @@
-const API_URL = `http://${window.location.hostname}:3300/commands`;
+import { COMMANDS_API_URL } from "../config/endpoints";
 
 export async function sendCommand(cmd, arg, timeoutMs = 5000) {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), timeoutMs);
 
   try {
-    const res = await fetch(API_URL, {
+    const res = await fetch(COMMANDS_API_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(arg ? { cmd, arg } : { cmd }),

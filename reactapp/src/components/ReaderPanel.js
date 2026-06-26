@@ -31,16 +31,31 @@ export default function ReaderPanel({
   };
 
   return (
-    <section className={`panel ${className || ""}`}>
-      <div className="panel-header">
-        <h3>Reader {readerId}</h3>
-        <span className="badge">{normalizedMode.toUpperCase()}</span>
+    <section className={`panel reader-instrument ${className || ""}`}>
+
+      {/* Channel header bar */}
+      <div className="instr-header">
+        <div className="instr-title">READER {readerId}</div>
+        {normalizedMode === "osdp" && (
+          <div className="instr-lamp instr-lamp-active" title="OSDP" />
+        )}
       </div>
 
-      <div className="panel-row">
-        <label>
-          Baud Rate
-          <select value={baud} onChange={(e) => setBaud(e.target.value)}>
+      {/* Mode indicator plate */}
+      <div className="instr-mode-plate">
+        <span className="instr-field-label">Protocol</span>
+        <span className="instr-mode-value">{normalizedMode ? normalizedMode.toUpperCase() : "—"}</span>
+      </div>
+
+      {/* Baud section */}
+      <div className="instr-section">
+        <div className="instr-field-label">Baud Rate</div>
+        <div className="instr-control-row">
+          <select
+            className="instr-select"
+            value={baud}
+            onChange={(e) => setBaud(e.target.value)}
+          >
             {baudOptions.map((option) => (
               <option key={option} value={option}>{option}</option>
             ))}
@@ -48,28 +63,40 @@ export default function ReaderPanel({
               <option key="custom-baud" value={baud}>{`Custom: ${baud}`}</option>
             ) : null}
           </select>
-        </label>
-        <button className="button-primary" onClick={() => send("setbaudrate", `${readerId} ${baud}`)}>
-          Set Baud
-        </button>
+          <button
+            className="instr-btn instr-btn-baud"
+            onClick={() => send("setbaudrate", `${readerId} ${baud}`)}
+          >
+            SET
+          </button>
+        </div>
       </div>
 
-      <div className="panel-row">
-        <label>
-          Reader Mode
-          <select value={normalizedMode} onChange={(e) => setReaderMode(e.target.value)}>
+      {/* Mode section */}
+      <div className="instr-section">
+        <div className="instr-field-label">Reader Mode</div>
+        <div className="instr-control-row">
+          <select
+            className="instr-select"
+            value={normalizedMode}
+            onChange={(e) => setReaderMode(e.target.value)}
+          >
             {modeOptions.map((option) => (
-              <option key={option} value={option}>{option.charAt(0).toUpperCase() + option.slice(1)}</option>
+              <option key={option} value={option}>{option.toUpperCase()}</option>
             ))}
             {normalizedMode && !modeOptions.includes(normalizedMode) ? (
-              <option key="custom-mode" value={normalizedMode}>{`Custom: ${normalizedMode}`}</option>
+              <option key="custom-mode" value={normalizedMode}>{normalizedMode.toUpperCase()}</option>
             ) : null}
           </select>
-        </label>
-        <button className="button-primary" onClick={() => send("setreadertype", `${readerId} ${readerMode}`)}>
-          Set Mode
-        </button>
+          <button
+            className="instr-btn instr-btn-apply"
+            onClick={() => send("setreadertype", `${readerId} ${readerMode}`)}
+          >
+            SET
+          </button>
+        </div>
       </div>
+
     </section>
   );
 }

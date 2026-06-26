@@ -3,43 +3,74 @@ body {
   height: 100%;
   margin: 0;
   overflow: hidden;
+  background: #151515;
+}
+
+body {
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+#root {
+  height: 100%;
 }
 
 :root {
   --panel-min-height: 300px;
   --panel-max-height: 400px;
-  --panel-height: 240px;
+  --panel-height: 260px;
+  --bg: #171717;
+  --bg-soft: #1e1e1e;
+  --panel: #202020;
+  --panel-strong: #1b1b1b;
+  --panel-border: #2f2f2f;
+  --panel-border-strong: #3b3b3b;
+  --text: #c9c9c9;
+  --text-muted: #737373;
+  --text-soft: #a1a1a1;
+  --accent: #d28a18;
+  --accent-strong: #f0b24b;
+  --info: #5c93db;
+  --success: #2d7544;
+  --danger: #7a2a2a;
+  --danger-text: #c55b5b;
+  --warn: #7f6821;
+  --warn-text: #cfb15c;
+  --shadow-xl: 0 18px 38px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.35);
+  --radius-xl: 8px;
+  --radius-lg: 6px;
+  --radius-md: 4px;
 }
 
 .eyebrow {
-  margin: 0 0 6px;
-  color: #8d9bb6;
-  letter-spacing: 0.12em;
+  margin: 6px 0 0;
+  color: var(--text-muted);
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  font-size: 0.8rem;
-}
-
-.app-header h1 {
-  margin: 0;
-  font-size: clamp(1.75rem, 2.5vw, 2.5rem);
-  line-height: 1.05;
+  font-size: 0.68rem;
+  font-weight: 700;
+  font-family: "Consolas", "Liberation Mono", monospace;
 }
 
 .status-pill {
-  padding: 10px 16px;
-  border-radius: 999px;
+  padding: 10px 14px;
+  border-radius: 4px;
   font-weight: 700;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  font-size: 0.8rem;
+  font-size: 0.68rem;
+  border: 1px solid var(--panel-border-strong);
+  font-family: "Consolas", "Liberation Mono", monospace;
 }
 
 .status-online {
-  background: rgba(56, 189, 248, 0.18);
-  color: #88d7ff;
+  background: rgba(45, 117, 68, 0.2);
+  border-color: rgba(78, 165, 106, 0.28);
+  color: #7ec492;
 }
 
 .status-offline {
-  background: rgba(248, 113, 113, 0.18);
-  color: #ffb3b3;
+  background: rgba(122, 42, 42, 0.22);
+  border-color: rgba(197, 91, 91, 0.26);
+  color: var(--danger-text);
 }

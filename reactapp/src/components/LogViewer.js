@@ -1,4 +1,10 @@
 import React, { useState } from "react";
+import {
+  FRONTAIL_BASE_URL,
+  LOGS_CLEAR_URL,
+  LOGS_DOWNLOAD_URL,
+  LOGS_TAIL_URL,
+} from "../config/endpoints";
 
 const LOG_LEVEL_OPTIONS = ["trace", "debug", "info", "warn", "error", "fatal"];
 
@@ -10,9 +16,6 @@ export default function LogViewer({
   onGetLogLevel,
   onSetLogLevel,
 }) {
-  const FRONTAIL_URL = `http://${window.location.hostname}:8080`;
-  const LOGS_DOWNLOAD_URL = `http://${window.location.hostname}:3300/logs/download`;
-  const LOGS_TAIL_URL = `http://${window.location.hostname}:3300/logs/tail`;
   const [reloadKey, setReloadKey] = useState(0);
   const selectedLevel = String(logLevel || "info").toLowerCase();
   const resolvedOptions = (Array.isArray(logLevelOptions) && logLevelOptions.length > 0
@@ -61,7 +64,7 @@ export default function LogViewer({
 
   const handleTrunLogs = async () => {
     try {
-      const res = await fetch(`http://${window.location.hostname}:3300/clear`, {
+      const res = await fetch(LOGS_CLEAR_URL, {
         method: "GET",
         cache: "no-store",
       });
@@ -91,7 +94,6 @@ export default function LogViewer({
     <section className="log-viewer">
       <div className="log-viewer-header">
         <div className="log-viewer-header-left">
-          <h3>Live Device Logs</h3>
           <div className="log-level-controls">
             <select
               className="log-level-select"
@@ -122,7 +124,7 @@ export default function LogViewer({
             </button>
             <a
               className="button-secondary open-frontail-link"
-              href={FRONTAIL_URL}
+              href={FRONTAIL_BASE_URL}
               target="_blank"
               rel="noreferrer"
             >
@@ -138,7 +140,7 @@ export default function LogViewer({
         <iframe
           key={reloadKey}
           title="Frontail Logs"
-          src={FRONTAIL_URL}
+          src={FRONTAIL_BASE_URL}
           className="log-viewer-iframe"
         />
       </div>
