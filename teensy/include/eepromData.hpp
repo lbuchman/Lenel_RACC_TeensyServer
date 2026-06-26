@@ -97,17 +97,17 @@ public:
         readerData->osdpBaudRate = value;
     };
 
-        /**
+    /**
            * setTerminalMode
            * Updates in-memory terminal interaction mode (does not persist until updateEeprom()).
            */
-        void setTerminalMode(uint8_t mode) { eepromdata.termMode = mode; };
+    void setTerminalMode(uint8_t mode) { eepromdata.termMode = mode; };
 
     /**
             * getTerminalMode
           * Returns the configured terminal mode
           */
-        uint8_t getTerminalMode() { return eepromdata.termMode; };
+    uint8_t getTerminalMode() { return eepromdata.termMode; };
 
     /**
           * getLogLevel
@@ -391,10 +391,9 @@ private:
             *  - int: 1 on success, 0 on invalid argument
             */
     shellFunc setbaudrate = [this](int arg_cnt, char** args, Stream& stream) -> int {
-        if (!checkArgument(
-                3, arg_cnt, args,
-                (char*)"\t{ \"cmd\": \"%s\", \"arg\": \"reader [0 or 1] baudrate [value]\", \"desc\": \"set device baudrate in eeprom\" }",
-                stream)) {
+        if (!checkArgument(3, arg_cnt, args,
+                           (char*)"\t{ \"cmd\": \"%s\", \"arg\": \"reader [0 or 1] baudrate [value]\", \"desc\": \"set device baudrate\" }",
+                           stream)) {
             return 1;
         }
 
@@ -436,10 +435,10 @@ private:
          *  - int: 1 on success, 0 on invalid argument
          */
     shellFunc setreadertype = [this](int arg_cnt, char** args, Stream& stream) -> int {
-        if (!checkArgument(3, arg_cnt, args,
-                           (char*)"\t{ \"cmd\": \"%s\", \"arg\": \"reader [0 or 1] reader type [wiegand or osdp]\", \"desc\": \"set reader "
-                                  "type in eeprom\" }",
-                           stream)) {
+        if (!checkArgument(
+                3, arg_cnt, args,
+                (char*)"\t{ \"cmd\": \"%s\", \"arg\": \"reader [0 or 1] reader type [wiegand or osdp]\", \"desc\": \"set reader type\" }",
+                stream)) {
             return 1;
         }
 
